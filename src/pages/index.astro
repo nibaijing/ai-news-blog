@@ -26,15 +26,21 @@ const others = posts.slice(1);
 			</a>
 		)}
 
-		{others.map(post => (
-			<a href={`/blog/${post.slug}`} class="card" style="text-decoration: none; color: inherit;">
-				<div class="post-meta">{post.data.pubDate.toDateString()}</div>
-				<h3>{post.data.title}</h3>
-				<p>{post.data.description}</p>
-				<div class="tags">
-					{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
-				</div>
-			</a>
-		))}
+		<div class="feed">
+			{others.map(post => (
+				<a href={`/blog/${post.slug}`} class="feed-item" style="text-decoration: none; color: inherit;">
+					<div class="feed-content">
+						<h3>{post.data.title}</h3>
+						<p>{post.data.description}</p>
+					</div>
+					<div class="feed-meta">
+						<div>{post.data.pubDate.toDateString()}</div>
+						<div class="tags" style="margin-top: 0.5rem;">
+							{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+						</div>
+					</div>
+				</a>
+			))}
+		</div>
 	</div>
 </BaseLayout>
