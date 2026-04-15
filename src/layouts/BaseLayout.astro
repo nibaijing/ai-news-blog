@@ -11,29 +11,92 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
+		<title>{title} | AI News Factory</title>
         <style>
+            :root {
+                --bg: #0a0a0a;
+                --fg: #e5e5e5;
+                --accent: #ffffff;
+                --muted: #888;
+                --border: #222;
+                --card-bg: #111;
+            }
             body { 
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                line-height: 1.6;
-                color: #333;
-                max-width: 800px;
+                line-height: 1.7;
+                color: var(--fg);
+                max-width: 1100px;
                 margin: 0 auto;
-                padding: 2rem 1rem;
-                background-color: #fdfdfd;
+                padding: 0 1.5rem;
+                background-color: var(--bg);
             }
-            nav { margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: center; }
-            .logo { font-weight: 800; font-size: 1.5rem; text-decoration: none; color: #000; }
-            h1 { font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
-            .post-meta { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
-            .content { font-size: 1.1rem; }
+            nav { 
+                padding: 2rem 0;
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center;
+                border-bottom: 1px solid var(--border);
+                margin-bottom: 4rem;
+            }
+            .logo { 
+                font-weight: 900; 
+                font-size: 1.2rem; 
+                letter-spacing: -0.05em;
+                text-transform: uppercase;
+                text-decoration: none; 
+                color: var(--accent); 
+            }
+            h1, h2, h3 { 
+                color: var(--accent); 
+                font-weight: 800; 
+                line-height: 1.1; 
+                margin-bottom: 1rem;
+                letter-spacing: -0.02em;
+            }
+            h1 { font-size: 3.5rem; }
+            .post-meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+            .content { 
+                font-size: 1.2rem; 
+                max-width: 700px; 
+                margin: 0 auto; 
+            }
+            .content p { margin-bottom: 1.5rem; }
             .tag { 
                 display: inline-block; 
-                background: #eee; 
+                border: 1px solid var(--border);
                 padding: 0.2rem 0.6rem; 
-                border-radius: 4px; 
-                font-size: 0.8rem; 
+                border-radius: 0; 
+                font-size: 0.75rem; 
                 margin-right: 0.5rem;
+                color: var(--muted);
+            }
+            .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 3rem; }
+            .card { 
+                background: var(--card-bg); 
+                border: 1px solid var(--border); 
+                padding: 2rem; 
+                transition: border-color 0.3s ease;
+                text-decoration: none;
+                color: inherit;
+                display: block;
+            }
+            .card:hover { border-color: var(--accent); }
+            .card h3 { margin: 0 0 1rem 0; font-size: 1.5rem; }
+            .card p { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
+            .featured { 
+                grid-column: 1 / -1; 
+                display: grid; 
+                grid-template-columns: 1fr 1fr; 
+                gap: 3rem; 
+                align-items: center;
+                border: 1px solid var(--border);
+                padding: 3rem;
+                background: var(--card-bg);
+                margin-bottom: 4rem;
+            }
+            @media (max-width: 768px) {
+                .featured { grid-template-columns: 1fr; }
+                h1 { font-size: 2.5rem; }
             }
         </style>
 	</head>

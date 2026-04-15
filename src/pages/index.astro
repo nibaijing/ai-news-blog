@@ -5,22 +5,36 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const featured = posts[0];
+const others = posts.slice(1);
 ---
-<BaseLayout title="AI News Factory | Intelligence Hub">
+<BaseLayout title="Intelligence Hub">
 	<h1>Intelligence Hub</h1>
-	<p style="color: #666; margin-bottom: 3rem;">Automated deep-dives into AI, Finance, and Current Events.</p>
+	<p style="color: #888; margin-bottom: 4rem; font-size: 1.2rem;">Automated deep-dives into the frontiers of AI, Finance, and Global Power.</p>
 	
-	<div style="display: grid; gap: 2rem;">
-		{posts.map(post => (
-			<div style="border-bottom: 1px solid #eee; padding-bottom: 1.5rem;">
-				<a href={`/blog/${post.slug}`} style="text-decoration: none; color: #000;">
-					<h2 style="margin: 0 0 0.5rem 0;">{post.data.title}</h2>
-				</a>
-				<div class="post-meta">
-					{post.data.pubDate.toDateString()} • {post.data.tags.join(', ')}
+	<div class="grid">
+		{featured && (
+			<a href={`/blog/${featured.slug}`} class="featured" style="text-decoration: none; color: inherit;">
+				<div>
+					<div class="post-meta">{featured.data.pubDate.toDateString()} • {featured.data.tags[0]}</div>
+					<h2>{featured.data.title}</h2>
+					<p style="font-size: 1.2rem; color: #aaa;">{featured.data.description}</p>
+					<div style="margin-top: 2rem; font-weight: 800; text-decoration: underline;">Read Intelligence $\rightarrow$</div>
 				</div>
-				<p style="margin: 0;">{post.data.description}</p>
-			</div>
+				<img src={featured.data.image} style="width: 100%; height: 400px; object-fit: cover; filter: grayscale(100%);" />
+			</a>
+		)}
+
+		{others.map(post => (
+			<a href={`/blog/${post.slug}`} class="card" style="text-decoration: none; color: inherit;">
+				<div class="post-meta">{post.data.pubDate.toDateString()}</div>
+				<h3>{post.data.title}</h3>
+				<p>{post.data.description}</p>
+				<div class="tags">
+					{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+				</div>
+			</a>
 		))}
 	</div>
 </BaseLayout>
