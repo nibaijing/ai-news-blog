@@ -10,37 +10,50 @@ const featured = posts[0];
 const others = posts.slice(1);
 ---
 <BaseLayout title="Intelligence Hub">
-	<h1>Intelligence Hub</h1>
-	<p style="color: #94a3b8; margin-bottom: 4rem; font-size: 1.2rem;">Automated deep-dives into the frontiers of AI, Finance, and Global Power.</p>
-	
-	<div class="grid">
-		{featured && (
-			<a href={`/blog/${featured.slug}`} class="featured" style="text-decoration: none; color: inherit;">
-				<div>
-					<div class="post-meta">{featured.data.pubDate.toDateString()} • {featured.data.tags[0]}</div>
-					<h2>{featured.data.title}</h2>
-					<p style="font-size: 1.2rem; color: #aaa;">{featured.data.description}</p>
-					<div style="margin-top: 2rem; font-weight: 800; color: #3b82f6; text-decoration: underline;">Read Intelligence $\rightarrow$</div>
-				</div>
-				<img src={featured.data.image} style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px;" />
-			</a>
-		)}
+	<header class="mb-16">
+		<h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-4 leading-none">
+            Intelligence<span class="text-blue-500">.</span>Hub
+        </h1>
+		<p class="text-xl text-slate-400 max-w-2xl">
+            Automated deep-dives into the frontiers of AI, Finance, and Global Power. 
+            Distilled insights for the high-cognitive elite.
+        </p>
+	</header>
 
-		<div class="feed">
-			{others.map(post => (
-				<a href={`/blog/${post.slug}`} class="feed-item" style="text-decoration: none; color: inherit;">
-					<div class="feed-content">
-						<h3>{post.data.title}</h3>
-						<p>{post.data.description}</p>
-					</div>
-					<div class="feed-meta">
-						<div>{post.data.pubDate.toDateString()}</div>
-						<div class="tags" style="margin-top: 0.5rem;">
-							{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
-						</div>
-					</div>
-				</a>
-			))}
-		</div>
+	{featured && (
+		<a href={`/blog/${featured.slug}`} class="group relative block mb-20 overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 transition-all duration-500 hover:border-blue-500/50">
+			<div class="grid md:grid-cols-2 gap-0">
+				<div class="p-8 md:p-12 flex flex-col justify-center">
+					<div class="text-blue-500 text-xs font-bold uppercase tracking-widest mb-4">Featured Intelligence</div>
+					<h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight group-hover:text-blue-400 transition-colors">
+                        {featured.data.title}
+                    </h2>
+					<p class="text-slate-400 text-lg mb-8 line-clamp-3">{featured.data.description}</p>
+					<div class="flex items-center gap-4">
+                        <span class="text-sm font-medium text-slate-500">{featured.data.pubDate.toDateString()}</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded uppercase">{featured.data.tags[0]}</span>
+                    </div>
+				</div>
+				<div class="relative h-64 md:h-auto overflow-hidden">
+					<img src={featured.data.image} class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
+				</div>
+			</div>
+		</a>
+	)}
+
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+		{others.map(post => (
+			<a href={`/blog/${post.slug}`} class="group block p-6 bg-slate-900 border border-slate-800 rounded-2xl transition-all duration-300 hover:bg-slate-800 hover:border-blue-500/50 hover:-translate-y-2">
+				<div class="flex justify-between items-center mb-4">
+					<span class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">{post.data.tags[0]}</span>
+					<span class="text-[10px] text-slate-500">{post.data.pubDate.toDateString()}</span>
+				</div>
+				<h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">{post.data.title}</h3>
+				<p class="text-slate-400 text-sm line-clamp-3 mb-6">{post.data.description}</p>
+				<div class="text-xs font-bold text-slate-500 group-hover:text-white transition-colors flex items-center gap-2">
+					Read More <span class="text-blue-500">→</span>
+				</div>
+			</a>
+		))}
 	</div>
 </BaseLayout>
