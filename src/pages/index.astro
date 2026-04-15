@@ -11,7 +11,7 @@ const others = posts.slice(1);
 ---
 <BaseLayout title="Intelligence Hub">
 	<h1>Intelligence Hub</h1>
-	<p style="color: #888; margin-bottom: 4rem; font-size: 1.2rem;">Automated deep-dives into the frontiers of AI, Finance, and Global Power.</p>
+	<p style="color: #94a3b8; margin-bottom: 4rem; font-size: 1.2rem;">Automated deep-dives into the frontiers of AI, Finance, and Global Power.</p>
 	
 	<div class="grid">
 		{featured && (
@@ -20,9 +20,9 @@ const others = posts.slice(1);
 					<div class="post-meta">{featured.data.pubDate.toDateString()} • {featured.data.tags[0]}</div>
 					<h2>{featured.data.title}</h2>
 					<p style="font-size: 1.2rem; color: #aaa;">{featured.data.description}</p>
-					<div style="margin-top: 2rem; font-weight: 800; text-decoration: underline;">Read Intelligence $\rightarrow$</div>
+					<div style="margin-top: 2rem; font-weight: 800; color: #3b82f6; text-decoration: underline;">Read Intelligence $\rightarrow$</div>
 				</div>
-				<img src={featured.data.image} style="width: 100%; height: 400px; object-fit: cover; filter: grayscale(100%);" />
+				<img src={featured.data.image} style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px;" />
 			</a>
 		)}
 

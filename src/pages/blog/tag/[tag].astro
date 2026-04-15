@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection('blog');
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+	return uniqueTags.map((tag) => ({
+		params: { tag },
+	}));
+}
+
+const { tag } = Astro.params;
+const posts = (await getCollection('blog')).filter((post) =>
+	post.data.tags.includes(tag)
+);
+---
+<BaseLayout title={`Tag: ${tag}`}>
+	<h1>Intelligence: {tag}</h1>
+	<p style="color: #94a3b8; margin-bottom: 4rem; font-size: 1.2rem;">Exploring the intersections of {tag} and future intelligence.</p>
+	
+	<div class="grid">
+		{posts.map(post => (
+			<a href={`/blog/${post.slug}`} class="card" style="text-decoration: none; color: inherit;">
+				<div class="post-meta">{post.data.pubDate.toDateString()}</div>
+				<h3>{post.data.title}</h3>
+				<p>{post.data.description}</p>
+				<div class="tags">
+					{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+				</div>
+			</a>
+		))}
+	</div>
+</BaseLayout>
