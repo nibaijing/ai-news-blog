@@ -1,0 +1,16 @@
+{
+  "name": "ai-news-blog",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro start",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "satori": "^2.0.0"
+  }
+}
