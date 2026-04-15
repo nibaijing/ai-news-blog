@@ -43,8 +43,8 @@ const { title } = Astro.props;
                 align-items: center;
                 padding: 1.2rem 0;
                 margin-bottom: 4rem;
-                backdrop-filter: blur(12px);
-                background: rgba(15, 23, 42, 0.8);
+                backdrop-filter: blur(16px);
+                background: rgba(15, 23, 42, 0.9);
                 border-bottom: 1px solid var(--border);
             }
             .logo { 
@@ -55,15 +55,37 @@ const { title } = Astro.props;
                 text-decoration: none; 
                 color: var(--accent); 
             }
-            .nav-links { display: flex; gap: 2rem; }
+            .nav-container {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+            }
+            .category-label {
+                font-size: 0.7rem;
+                font-weight: 800;
+                color: var(--muted);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                border-right: 1px solid var(--border);
+                padding-right: 1.5rem;
+            }
+            .nav-links { 
+                display: flex; 
+                gap: 1.2rem; 
+            }
             .nav-links a { 
                 text-decoration: none; 
                 color: var(--muted); 
                 font-size: 0.85rem; 
                 font-weight: 500; 
-                transition: color 0.3s ease;
+                transition: all 0.3s ease;
+                padding: 0.3rem 0.6rem;
+                border-radius: 4px;
             }
-            .nav-links a:hover { color: var(--accent); }
+            .nav-links a:hover { 
+                color: var(--accent); 
+                background: rgba(59, 130, 246, 0.1);
+            }
             h1, h2, h3 { 
                 color: var(--fg); 
                 font-weight: 800; 
@@ -123,18 +145,39 @@ const { title } = Astro.props;
             @media (max-width: 768px) {
                 .featured { grid-template-columns: 1fr; }
                 h1 { font-size: 2.5rem; }
-                .nav-links { display: none; }
+                .nav-container {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.8rem;
+                }
+                .category-label {
+                    border-right: none;
+                    padding-right: 0;
+                    margin-bottom: 0.2rem;
+                }
+                .nav-links {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                nav {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1rem;
+                }
             }
         </style>
 	</head>
 	<body>
 		<nav>
 			<a href="/" class="logo">AI NEWS FACTORY</a>
-			<div class="nav-links">
-				<a href="/">Home</a>
-				<a href="/blog/tag/AI">AI</a>
-				<a href="/blog/tag/Finance">Finance</a>
-				<a href="/blog/tag/CurrentEvents">Current Events</a>
+			<div class="nav-container">
+				<div class="category-label">Categories</div>
+				<div class="nav-links">
+					<a href="/">Home</a>
+					<a href="/blog/tag/AI">AI</a>
+					<a href="/blog/tag/Finance">Finance</a>
+					<a href="/blog/tag/CurrentEvents">Current Events</a>
+				</div>
 			</div>
 		</nav>
 		<slot />
