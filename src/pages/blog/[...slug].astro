@@ -16,10 +16,10 @@ const { Content } = await entry.render();
 	<article class="max-w-3xl mx-auto">
 		<div class="text-center mb-16">
 			<div class="flex justify-center gap-2 mb-6">
-				{entry.data.tags.map(tag => <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider">{tag}</span>)}
+				{entry.data.tags.map(tag => <span class="px-3 py-1 bg-electric/10 text-electric text-xs font-bold rounded-full uppercase tracking-wider">{tag}</span>)}
 			</div>
 			<h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">{entry.data.title}</h1>
-			<div class="flex items-center justify-center gap-4 text-slate-500 text-sm">
+			<div class="flex items-center justify-center gap-4 text-slate-400 text-sm">
 				<span class="font-medium">{entry.data.pubDate.toDateString()}</span>
 				<span class="text-slate-700">•</span>
 				<span class="font-medium">{entry.data.author}</span>
@@ -28,7 +28,7 @@ const { Content } = await entry.render();
 		
 		<img src={entry.data.image} class="w-full h-[60vh] object-cover rounded-3xl mb-16 grayscale hover:grayscale-0 transition-all duration-700" />
 		
-		<div class="prose prose-invert prose-slate max-w-none text-slate-300 text-xl leading-relaxed">
+		<div class="prose prose-invert max-w-none text-slate-300 text-xl leading-relaxed">
 			<Content />
 		</div>
 	</article>

@@ -17,17 +17,24 @@ const posts = (await getCollection('blog')).filter((post) =>
 );
 ---
 <BaseLayout title={`Tag: ${tag}`}>
-	<h1>Intelligence: {tag}</h1>
-	<p style="color: #94a3b8; margin-bottom: 4rem; font-size: 1.2rem;">Exploring the intersections of {tag} and future intelligence.</p>
+	<header class="mb-16">
+		<h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-4 leading-tight">Intelligence: {tag}</h1>
+		<p class="text-xl text-slate-300 max-w-2xl">
+			Exploring the intersections of <span class="text-electric">{tag}</span> and future intelligence.
+		</p>
+	</header>
 	
-	<div class="grid">
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 		{posts.map(post => (
-			<a href={`/blog/${post.slug}`} class="card" style="text-decoration: none; color: inherit;">
-				<div class="post-meta">{post.data.pubDate.toDateString()}</div>
-				<h3>{post.data.title}</h3>
-				<p>{post.data.description}</p>
-				<div class="tags">
-					{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+			<a href={`/blog/${post.slug}`} class="group premium-card block transition-all duration-300 hover:-translate-y-2">
+				<div class="flex justify-between items-center mb-4">
+					<span class="text-[10px] font-bold text-electric uppercase tracking-widest">{post.data.tags[0]}</span>
+					<span class="text-[10px] text-slate-500">{post.data.pubDate.toDateString()}</span>
+				</div>
+				<h3 class="text-xl font-bold mb-3 group-hover:text-electric transition-colors">{post.data.title}</h3>
+				<p class="text-slate-400 text-sm line-clamp-3 mb-6">{post.data.description}</p>
+				<div class="flex items-center gap-2 text-xs font-bold text-slate-500 group-hover:text-white transition-colors">
+					Read More <span class="text-electric">→</span>
 				</div>
 			</a>
 		))}
